@@ -38,6 +38,15 @@ TEXT_COLORS = {
     "Red":   "\033[91m",
 }
 
+# Gradient used for the banner: a list of (red, green, blue) color stops
+# that the banner fades through from left to right and top to bottom.
+GRADIENTS = {
+    "Classic Green": [(0, 255, 70), (170, 255, 0), (255, 225, 0)],
+    "Ocean Blue":    [(0, 210, 255), (80, 120, 255), (185, 100, 255)],
+    "Amber Retro":   [(255, 205, 0), (255, 125, 0), (255, 60, 40)],
+    "Royal Purple":  [(200, 80, 255), (255, 80, 200), (255, 150, 120)],
+}
+
 _active = DEFAULT_THEME
 _text_color = DEFAULT_TEXT_COLOR
 
@@ -93,6 +102,14 @@ def reset_theme():
     """Back to the default theme and text color (used on logout)."""
     set_theme(DEFAULT_THEME)
     set_text_color(DEFAULT_TEXT_COLOR)
+
+
+def gradient_stops():
+    """Color stops for the banner gradient. Returns None when the
+    Administrator picked a text color, so the banner uses that one color."""
+    if _text_color in TEXT_COLORS:
+        return None
+    return GRADIENTS[_active]
 
 
 def color(role):

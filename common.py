@@ -12,7 +12,7 @@ import re
 import secrets
 import sys
 
-from theme import color
+from theme import color, gradient_stops
 
 # ----------------------------------------------------------------------
 # CONFIGURATION
@@ -24,20 +24,18 @@ SUBJECTS_FILE = os.path.join(DATA_DIR, "subjects.txt")
 GRADES_FILE = os.path.join(DATA_DIR, "grades.txt")
 SETTINGS_FILE = os.path.join(DATA_DIR, "settings.txt")
 
-SYSTEM_TITLE = "Rollbook1.0"
+SYSTEM_TITLE = "STUDENT INFORMATION SYSTEM"
 DELIM = "|"
 PASSING_GRADE = 75.0
 RESET = "\033[0m"
 EMAIL_PATTERN = r"[^@\s]+@[^@\s]+\.[^@\s]+"
 
 BANNER = r"""
- ███   ██  █    █    ███   ██   ██  █  █
- █  █ █  █ █    █    █  █ █  █ █  █ █ █
- ███  █  █ █    █    ███  █  █ █  █ ██
- █ █  █  █ █    █    █  █ █  █ █  █ █ █
- █  █  ██  ████ ████ ███   ██   ██  █  █
-
-  Student Information System
+  ____ ___ ____
+ / ___|_ _/ ___|
+ \___ \| |\___ \
+  ___) | | ___) |
+ |____/___|____/
 """
 
 
@@ -66,6 +64,40 @@ def clear():
         os.system("cls" if os.name == "nt" else "clear")
     else:
         print("\n" * 3)
+
+
+def _blend(stops, t):
+    """Color at position t (0.0 to 1.0) along a list of (r, g, b) stops."""
+    t = min(max(t, 0.0), 1.0) * (len(stops) - 1)
+    i = min(int(t), len(stops) - 2)
+    fraction = t - i
+    return tuple(round(a + (b - a) * fraction)
+                 for a, b in zip(stops[i], stops[i + 1]))
+
+
+def print_banner():
+    """Print the BANNER centered, with a color gradient from the theme.
+    Plain centered text is used when colors are off or a text color is set."""
+    lines = BANNER.strip("\n").split("\n")
+    width = max(len(line) for line in lines)
+    pad = " " * ((62 - width) // 2)          # 62 = width of the boxes
+    stops = gradient_stops()
+    span = max(1, (width - 1) + 2 * (len(lines) - 1))
+
+    print()
+    for row, line in enumerate(lines):
+        if COLOR_ON and stops:
+            out = ""
+            for col, char in enumerate(line):
+                if char == " ":
+                    out += char
+                    continue
+                r, g, b = _blend(stops, (col + 2 * row) / span)
+                out += f"\033[38;2;{r};{g};{b}m{char}"
+            print(pad + out + RESET)
+        else:
+            print(c(pad + line))
+    print()
 
 
 def header(title):

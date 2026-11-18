@@ -1,5 +1,5 @@
 """
-Rollbook1.0 - Student Information System
+Student Information System
 Start Menu -> Register -> Login -> Home -> Students, Subjects, Grades
 
 Files:
@@ -544,7 +544,7 @@ def show_dashboard_info(username, role):
 def home(username, role):
     while True:
         clear()
-        print(c(BANNER))
+        print_banner()
         header(SYSTEM_TITLE + " - DASHBOARD")
         show_dashboard_info(username, role)
         info("  MAIN MENU")
@@ -579,7 +579,7 @@ def open_dashboard(session):
 def start_menu():
     while True:
         clear()
-        print(c(BANNER))
+        print_banner()
         header(SYSTEM_TITLE)
         choice = choose([("1", "Login"), ("2", "Register"), ("0", "Exit")])
         if choice == "1":
