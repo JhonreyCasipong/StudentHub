@@ -24,18 +24,20 @@ SUBJECTS_FILE = os.path.join(DATA_DIR, "subjects.txt")
 GRADES_FILE = os.path.join(DATA_DIR, "grades.txt")
 SETTINGS_FILE = os.path.join(DATA_DIR, "settings.txt")
 
-SYSTEM_TITLE = "STUDENT INFORMATION SYSTEM"
+SYSTEM_TITLE = "Rollbook1.0"
 DELIM = "|"
 PASSING_GRADE = 75.0
 RESET = "\033[0m"
 EMAIL_PATTERN = r"[^@\s]+@[^@\s]+\.[^@\s]+"
 
 BANNER = r"""
-  ____ ___ ____
- / ___|_ _/ ___|
- \___ \| |\___ \
-  ___) | | ___) |
- |____/___|____/
+ ███   ██  █    █    ███   ██   ██  █  █
+ █  █ █  █ █    █    █  █ █  █ █  █ █ █
+ ███  █  █ █    █    ███  █  █ █  █ ██
+ █ █  █  █ █    █    █  █ █  █ █  █ █ █
+ █  █  ██  ████ ████ ███   ██   ██  █  █
+
+  Student Information System
 """
 
 

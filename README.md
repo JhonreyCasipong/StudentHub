@@ -1,4 +1,6 @@
-# Student Information System
+# Rollbook1.0
+
+**Student Information System**
 
 A terminal-based management system built with **Python 3** and **plain `.txt` files** for storage.
 It runs entirely in the command line, with menu navigation, double-line box tables, colors, and

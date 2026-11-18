@@ -1,2 +1,3 @@
 2025|josh|BSCS|2|josh@gmail.com
 2020|line|BSIT|4|line@gmail.com
+2021|rey amorr|BSCS|2|amorgandareyrey@gmail.com

@@ -1,5 +1,5 @@
 """
-Student Information System
+Rollbook1.0 - Student Information System
 Start Menu -> Register -> Login -> Home -> Students, Subjects, Grades
 
 Files:
